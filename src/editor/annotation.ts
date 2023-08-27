@@ -235,9 +235,9 @@ const annotation: ExtensionModule = (ctx) => {
   Global.reviews.onDidChange(throttledUpdate, null, disposables)
   window.onDidChangeActiveTextEditor(throttledUpdate, null, disposables)
   window.onDidChangeTextEditorSelection(throttledRefresh, null, disposables)
-  workspace.onDidChangeTextDocument(
+  workspace.onDidSaveTextDocument(
     (e) => {
-      if (e.document === window.activeTextEditor?.document) {
+      if (e === window.activeTextEditor?.document) {
         _current_doc = undefined
         throttledUpdate()
       }
